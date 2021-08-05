@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+
+// مشكلتي مع الكود في الجافا سكريبت اني اذا ضغطت زر Left بعدين ضغطت زر Right
+// بيعطيني في الاوتبوت انه اللفت والرايت كلهم قيمتهم 1 ، اللي أنا أبغاه انه يعطيني قيمة اخر زر انضغط ب1 والبقية أصفار يعني كل ما ينضغط زر يصفر البقية كأنه اختيارات
+// الاوتبوت في الفنكشن اللي اسمها send data
+<html>
+<script>
+var connection = new WebSocket('ws://'+location.hostname+':81/');
+var button_1_status = 0;
+var button_2_status = 0;
+var button_3_status = 0;
+var button_4_status = 0;
+var button_5_status = 0;
+
+function button_1_on()
+{
+   button_1_status = 1; 
+  console.log("Button 1 is ON");
+  send_data();
+}
+
+function button_2_on()
+{
+   button_2_status = 1; 
+  console.log("Button 2 is ON");
+  send_data();
+}
+
+function button_3_on()
+{
+   button_3_status = 1; 
+  console.log("Button 3 is ON");
+  send_data();
+}
+
+function button_4_on()
+{
+   button_4_status = 1; 
+  console.log("Button 4 is ON");
+  send_data();
+}
+
+function button_5_on()
+{
+   button_5_status = 1; 
+  console.log("Button 5 is ON");
+  send_data();
+}
+
+function send_data()
+{
+  var full_data = '{"Forward" :'+button_1_status+',"Right":'+button_2_status+',"Stop" :'+button_3_status+',"Left" :'+button_4_status+',"Backward" :'+button_5_status+'}';
+  connection.send(full_data);
+}
+</script>
+<body>
+<center>
+<h1>Control Movement</h1>
+<h3> Forward </h3>
+<button onclick= "button_1_on()" >On</button>
+<h3> Right </h3>
+<button onclick="button_2_on()">On</button>
+<h3> Stop </h3>
+<button onclick="button_3_on()">On</button>
+<h3> Left </h3>
+<button onclick="button_4_on()">On</button>
+<h3> Backward </h3>
+<button onclick="button_5_on()">On</button>
+</center>
+</body>
+</html>
